@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>KITT sign-in</title>
+</head>
+<body>
+<p id="status">Returning to KITT…</p>
+<script>
+  // Tesla redirects here with ?code=…&state=… (or ?error=…).
+  // Hand the query string to the iOS app's custom URL scheme.
+  var target = "kitt://callback" + window.location.search;
+  window.location.replace(target);
+  var status = document.getElementById("status");
+  var link = document.createElement("a");
+  link.href = target;
+  link.textContent = "tap here";
+  status.textContent = "If KITT did not open, ";
+  status.appendChild(link);
+  status.appendChild(document.createTextNode("."));
+</script>
+</body>
+</html>
